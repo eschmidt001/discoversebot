@@ -1,3 +1,4 @@
+
 #fuck i haven't touched python in months
 #all thaaaaaaaaaat jazz....BORING but required
 import numpy as np 
@@ -11,9 +12,13 @@ import json
 #take lyrics 
 f = open('Lyrics_fredodisco.json')
 #returns JSON object as a dictionary
-g = json.load(f)['songs']
+g = json.load(f)
+h = g.keys()
+j = g['songs'] # list of dictionaries/song
+print(type(j))
+k = j[6]['lyrics']
 
-print(type(g))  
+songs = json.load(f)['songs'] #list of dictionaries/song
 #select spot to start
 
 
