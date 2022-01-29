@@ -1,6 +1,4 @@
 #i haven't touched python in months
-#all thaaaaaaaaaat jazz....BORING but required
-#from types import NoneType
 import numpy as np 
 #import tweepy
 import json
@@ -8,7 +6,6 @@ import random
 import re
 
 #TODO: credential stuff from separate file ONCE THEY GIVE THEM TO ME
-#lord please let me always use the right python interpreter
 
 #here's the plan: take lyrics 
 f = open('Lyrics_fredodisco.json')
@@ -35,7 +32,7 @@ for l in lines:
         lines.remove(l)
 
 print(songs[n1]['title'])
-n2 = random.randint(0,len(lines)-3) #choose length (tweet limit is 280 chars)
+n2 = random.randint(0,len(lines)-3) #extract length (tweet limit is 280 chars)
 t = lines[n2]
 i = 1
 while len(t) < 280:
