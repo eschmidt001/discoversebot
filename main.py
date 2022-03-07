@@ -1,11 +1,10 @@
 #i haven't touched python in months
 import numpy as np 
-#import tweepy
+import tweepy
 import json
 import random
 import re
-
-#TODO: credential stuff from separate file ONCE THEY GIVE THEM TO ME
+from private.creds import key, key_secret
 
 #here's the plan: take lyrics 
 f = open('Lyrics_fredodisco.json')
@@ -16,7 +15,7 @@ songs = g['songs'] #list of dictionaries/song
 n1 = random.randint(0, len(songs)-1)
 lyr = songs[n1]['lyrics']
 
-#preprocessing
+#preprocessing - might want to do this for all lyrics, move this to private file, then select from there
 x = re.search(r'[0-9]+[E,e]', lyr) #remove 'embed' and surrounding numbers. 
 if x is None:
     x = re.search(r'[E,e]mbed', lyr)
@@ -35,8 +34,8 @@ print(songs[n1]['title'])
 n2 = random.randint(0,len(lines)-3) #extract length (tweet limit is 280 chars)
 t = lines[n2]
 i = 1
-while len(t) < 280:
-    if (n2+i) < (len(lines)-1):
+while len(t) < 280 and (i<6):
+    if (n2+i) < (len(lines)-1) :
         t = t + lines[n2+i]
         i = i+1
     else: break
@@ -45,6 +44,8 @@ if len(t) > 279:
 else: tw = lines[n2:n2+i]
 print(len(''.join(tw)))
 print(tw)
+
 #tweet out length
+
 
 #yeehaw that's the program
