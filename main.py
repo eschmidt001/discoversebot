@@ -5,9 +5,10 @@ import json
 import random
 import re
 from private.creds import TWITTER_CONSUMER_KEY, TWITTER_CONSUMER_SECRET, TWITTER_ACCESS_TOKEN, TWITTER_ACCESS_TOKEN_SECRET
+from private.creds import lyric_file
 
 #here's the plan: take lyrics 
-f = open('Lyrics_fredodisco.json')
+f = open(lyric_file)
 g = json.load(f) #dictionary
 songs = g['songs'] #list of dictionaries/song
 
