@@ -4,7 +4,7 @@ import tweepy
 import json
 import random
 import re
-from private.creds import key, key_secret
+from private.creds import TWITTER_CONSUMER_KEY, TWITTER_CONSUMER_SECRET, TWITTER_ACCESS_TOKEN, TWITTER_ACCESS_TOKEN_SECRET
 
 #here's the plan: take lyrics 
 f = open('Lyrics_fredodisco.json')
@@ -31,21 +31,33 @@ for l in lines:
         lines.remove(l)
 
 print(songs[n1]['title'])
-n2 = random.randint(0,len(lines)-3) #extract length (tweet limit is 280 chars)
-t = lines[n2]
-i = 1
-while len(t) < 280 and (i<6):
-    if (n2+i) < (len(lines)-1) :
-        t = t + lines[n2+i]
-        i = i+1
-    else: break
-if len(t) > 279:
-    tw = lines[n2:n2+i-2]
-else: tw = lines[n2:n2+i]
-print(len(''.join(tw)))
-print(tw)
+"""picks a section of a song from song n1"""
+def get_line():
+    n2 = random.randint(0,len(lines)-3) #extract length (tweet limit is 280 chars)
+    t = lines[n2]
+    i = 1
+    while len(t) < 280 and (i<5):
+        if (n2+i) < (len(lines)-1) :
+            t = t + lines[n2+i]
+            i = i+1
+        else: break
+    if len(t) > 279:
+        tw = lines[n2:n2+i-2]
+    else: tw = lines[n2:n2+i]
+    print(len(''.join(tw)))
+    print(tw)
+    return '\n'.join(tw)
 
 #tweet out length
+"""when called, reach the twitter API using tweepy and post the given tweet in line"""
+def t_out():
+    line = get_line()
 
+    auth = tweepy.OAuthHandler(TWITTER_CONSUMER_KEY,TWITTER_CONSUMER_SECRET)
+    auth.set_access_token(TWITTER_ACCESS_TOKEN, TWITTER_ACCESS_TOKEN_SECRET)
+    api = tweepy.API(auth)
 
+    status = api.update_status(status= line) #works but I need line breaks
+    
+t_out()
 #yeehaw that's the program
