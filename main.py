@@ -30,7 +30,6 @@ for l in lines:
     if l[0] == '[': #remove words in brackets
         lines.remove(l)
 
-print(songs[n1]['title'])
 """picks a section of a song from song n1"""
 def get_line():
     n2 = random.randint(0,len(lines)-3) #extract length (tweet limit is 280 chars)
@@ -44,8 +43,6 @@ def get_line():
     if len(t) > 279:
         tw = lines[n2:n2+i-2]
     else: tw = lines[n2:n2+i]
-    print(len(''.join(tw)))
-    print(tw)
     return '\n'.join(tw)
 
 #tweet out length
@@ -57,7 +54,7 @@ def t_out():
     auth.set_access_token(TWITTER_ACCESS_TOKEN, TWITTER_ACCESS_TOKEN_SECRET)
     api = tweepy.API(auth)
 
-    status = api.update_status(status= line) #works but I need line breaks
+    status = api.update_status(status= line)
     
-t_out()
+t_out() #theoretically the .bat automatically triggered every day should do the job
 #yeehaw that's the program
