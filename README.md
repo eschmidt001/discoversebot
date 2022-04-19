@@ -1,3 +1,7 @@
 # discoversebot
 
-This is a twitter bot made in Python which tweets fredo disco lyrics every 3 hours. 
+This is a twitter bot made in Python which tweets fredo disco lyrics daily.
+
+There is a supporting json file with lyrics.
+
+It runs daily via an scheduled running of a .bat script hosted on my computer running the main file.
