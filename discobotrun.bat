@@ -1,1 +1,0 @@
-C:\Users\jsmor\Anaconda3\python.exe "C:\Users\jsmor\Documents\GitHub\discoversebot\main.py"
